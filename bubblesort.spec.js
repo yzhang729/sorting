@@ -1,10 +1,10 @@
 describe('Bubble Sort', function() {
   beforeAll(function() {
-    spyOn(window, 'swap').and.callThrough()
+    spyOn(window, 'swap').and.callThrough();
   });
   it('calls on the swap function', function() {
-    bubbleSort([9, 7, 3])
-    expect(swap.calls.count()).toEqual(3)
+    bubbleSort([9, 7, 3]);
+    expect(swap.calls.count()).toEqual(3);
   });
   it('handles an empty array', function() {
     expect(bubbleSort([])).toEqual([]);
@@ -24,5 +24,13 @@ describe('Bubble Sort', function() {
       'dog',
       'mouse',
     ]);
+  });
+  it('can reverse sort', function() {
+    expect(
+      bubbleSort(['cat', 'mouse', 'dog'], function(a, b) {
+        if (a > b) return -1;
+        if (a < b) return 1;
+      })
+    ).toEqual(['mouse', 'dog', 'cat']);
   });
 });
